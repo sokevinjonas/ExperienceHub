@@ -25,6 +25,9 @@ Route::name('public.')->group(function () {
 
     Route::middleware('auth')->group(function () {
         Route::post('logout', [PublicAuthenticatedSessionController::class, 'destroy'])->name('logout');
-        Route::get('profile', [PublicProfileController::class, 'index'])->name('profile.index');
+        Route::controller(PublicProfileController::class)->name('profile.')->group(function () {
+            Route::get('profile', 'index')->name('index');
+            Route::put('profile/update', 'updateUserData')->name('update');
+        });
     });
 });

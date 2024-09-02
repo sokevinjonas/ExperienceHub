@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class RegisteredUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Détermine si l'utilisateur est autorisé à faire cette requête.
@@ -23,10 +24,9 @@ class RegisteredUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'username' => 'required|string|max:255|unique:users,username',
-            'phone' => 'required|string|max:20',
-            'password' => 'required|string|min:8|confirmed',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
+            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
+            'phone' => ['required', 'string', 'max:20', Rule::unique('users')->ignore($this->user()->id)],
         ];
     }
 
@@ -43,9 +43,6 @@ class RegisteredUserRequest extends FormRequest
             'username.required' => 'Le nom d’utilisateur est obligatoire.',
             'username.unique' => 'Ce nom d’utilisateur est déjà pris.',
             'phone.required' => 'Le numéro de téléphone est obligatoire.',
-            'password.required' => 'Le mot de passe est obligatoire.',
-            'password.min' => 'Le mot de passe doit comporter au moins 8 caractères.',
-            'password.confirmed' => 'Les mots de passe ne correspondent pas.',
         ];
     }
 }
