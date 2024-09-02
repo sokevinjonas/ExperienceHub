@@ -39,7 +39,7 @@
                                     <input type="text" class="form-control @error('login') is-invalid @enderror"
                                         placeholder="email ou telephone" id="login" name="login"
                                         value="{{ old('login') }}">
-                                    <label for="login">Pseudo ou Email</label>
+                                    <label for="login">Telephone ou Email</label>
                                     @error('login')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

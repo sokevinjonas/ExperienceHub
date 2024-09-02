@@ -88,8 +88,13 @@
                     </li>
                     @if (auth()->check())
                         <li class="nav-item d-none d-md-block dropdown">
-                            <img class="avatar w-10 dropdown-toggle" data-bs-toggle="dropdown"
-                                src="{{ 'https://dummyimage.com/50x50/ced4da/6c757d.jpg' }}" alt="Avatar" />
+                            <span class="avatar bg-primary text-white text-center w-10 h-10 dropdown-toggle"
+                                data-bs-toggle="dropdown">
+                                <span class="ms-2">C</span>
+                            </span>
+
+                            {{-- <img class="avatar w-10 dropdown-toggle" data-bs-toggle="dropdown"
+                                src="{{ 'https://dummyimage.com/50x50/ced4da/6c757d.jpg' }}" alt="Avatar" /> --}}
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
                                     <a class="dropdown-item" href="#">
