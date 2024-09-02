@@ -21,4 +21,8 @@ Route::name('public.')->group(function () {
         Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
         Route::post('register', [RegisteredUserController::class, 'store']);
     });
+
+    Route::middleware('auth')->group(function () {
+        Route::post('logout', [PublicAuthenticatedSessionController::class, 'destroy'])->name('logout');
+    });
 });
