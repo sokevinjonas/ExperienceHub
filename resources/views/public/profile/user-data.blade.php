@@ -100,8 +100,9 @@
                         <h4 class="card-title">Modifier le mot de passe</h4>
                     </div>
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form action="{{ route('password.update') }}" method="POST">
                             @csrf
+                            @method('put')
                             <div class="mb-3">
                                 <label for="current_password" class="form-label">Mot de passe actuel</label>
                                 <input type="password" class="form-control @error('current_password') is-invalid @enderror"
