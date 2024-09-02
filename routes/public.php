@@ -28,6 +28,7 @@ Route::name('public.')->group(function () {
         Route::controller(PublicProfileController::class)->name('profile.')->group(function () {
             Route::get('profile', 'index')->name('index');
             Route::put('profile/update', 'updateUserData')->name('update');
+            Route::get('profile/testimonials', 'testimonials')->name('testimonials');
         });
     });
 });

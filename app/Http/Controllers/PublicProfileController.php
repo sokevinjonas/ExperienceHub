@@ -20,4 +20,10 @@ class PublicProfileController extends Controller
         $user->update($data);
         return redirect()->route('public.profile.index')->with('success', 'User data updated successfully');
     }
+
+    public function testimonials()
+    {
+        $user = request()->user();
+        return view('public.profile.tesmonials', compact('user'));
+    }
 }

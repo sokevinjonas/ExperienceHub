@@ -2,39 +2,31 @@
     <ul class="nav nav-tabs nav-pills flex-column">
         <!-- Gestion du Profil -->
         <li class="nav-item mb-3">
-            <a class="nav-link active" href="#">
+            <a @class([
+                'nav-link',
+                'active' => Route::currentRouteNamed('public.profile.index'),
+            ]) href="{{ route('public.profile.index') }}">
                 <i class="uil uil-user pe-1"></i>
                 <span>Gestion du Profil</span>
             </a>
         </li>
-        <li class="nav-item mb-3">
+        {{-- <li class="nav-item mb-3">
             <a class="nav-link" href="#">
                 <i class="uil uil-setting pe-1"></i>
                 <span>Configurer les préférences</span>
             </a>
-        </li>
+        </li> --}}
 
         <!-- Gestion des Témoignages -->
         <li class="nav-item mb-3">
-            <a class="nav-link" href="#">
+            <a @class([
+                'nav-link',
+                'active' => Route::currentRouteNamed('public.profile.testimonials'),
+            ]) href="{{ route('public.profile.testimonials') }}">
                 <i class="uil uil-comment-alt pe-1"></i>
                 <span>Gestion des Témoignages</span>
             </a>
         </li>
-        <li class="nav-item mb-3">
-            <a class="nav-link" href="#">
-                <i class="uil uil-plus-circle pe-1"></i>
-                <span>Ajouter un nouveau témoignage</span>
-            </a>
-        </li>
-
-        <li class="nav-item mb-3">
-            <a class="nav-link" href="#">
-                <i class="uil uil-bell pe-1"></i>
-                <span>Notifications</span>
-            </a>
-        </li>
-
 
         <!-- Support et Assistance -->
         <li class="nav-item mb-3">

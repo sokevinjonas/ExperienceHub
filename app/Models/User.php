@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return Carbon::parse($this->attributes['created_at'])->format($format);
     }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class, 'created_at');
+    }
 }
