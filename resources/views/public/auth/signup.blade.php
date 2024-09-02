@@ -54,6 +54,16 @@
                                     @enderror
                                 </div>
                                 <div class="form-floating mb-4">
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                        placeholder="Nom" id="username" username="username" value="{{ old('username') }}">
+                                    <label for="username">Pseudo</label>
+                                    @error('username')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-floating mb-4">
                                     <input type="text" class="form-control @error('email') is-invalid @enderror"
                                         placeholder="email" id="email" name="email" value="{{ old('email') }}">
                                     <label for="email">Email</label>

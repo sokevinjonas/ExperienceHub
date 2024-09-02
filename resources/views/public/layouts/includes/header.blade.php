@@ -82,12 +82,12 @@
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
                     <li class="nav-item"><a class="nav-link" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvas-search"><i class="uil uil-search"></i></a></li>
-                    <li class="nav-item d-none d-md-block">
+                    <li class="nav-item d-none d-lg-block">
                         <a href="./contact.html" class="btn btn-sm btn-primary rounded-pill">Partager votre
                             expérience</a>
                     </li>
                     @if (auth()->check())
-                        <li class="nav-item d-none d-md-block dropdown">
+                        <li class="nav-item d-none d-lg-block dropdown">
                             <span class="avatar bg-primary text-white text-center w-10 h-10 dropdown-toggle"
                                 data-bs-toggle="dropdown">
                                 <span class="ms-2">C</span>
@@ -97,7 +97,7 @@
                                 src="{{ 'https://dummyimage.com/50x50/ced4da/6c757d.jpg' }}" alt="Avatar" /> --}}
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{ route('public.profile.index') }}">
                                         <i class="uil uil-user"></i>
                                         Profil
                                     </a>

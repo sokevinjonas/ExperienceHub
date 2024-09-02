@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicPagesController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\PublicAuthenticatedSessionController;
+use App\Http\Controllers\PublicProfileController;
 
 Route::name('public.')->group(function () {
 
@@ -24,5 +25,6 @@ Route::name('public.')->group(function () {
 
     Route::middleware('auth')->group(function () {
         Route::post('logout', [PublicAuthenticatedSessionController::class, 'destroy'])->name('logout');
+        Route::get('profile', [PublicProfileController::class, 'index'])->name('profile.index');
     });
 });
