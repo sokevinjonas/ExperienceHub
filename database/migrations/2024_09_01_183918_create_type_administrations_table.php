@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -14,10 +15,23 @@ return new class extends Migration
         Schema::create('type_administrations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
+
+        // Insertion des données de base
+        DB::table('type_administrations')->insert([
+            [
+                'name' => 'Public',
+                'description' => 'Secteur public'
+            ],
+            [
+                'name' => 'Privee',
+                'description' => 'Secteur privé'
+            ]
+        ]);
     }
+
 
     /**
      * Reverse the migrations.

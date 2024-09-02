@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('content');
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('type_administration_id')->constrained('type_administrations')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('activity_sector_id')->constrained('activity_sectors')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
