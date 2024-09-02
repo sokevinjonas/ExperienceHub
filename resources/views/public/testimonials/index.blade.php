@@ -1,19 +1,22 @@
 @extends('public.layouts.app')
 
 @section('content')
-    <section class="wrapper bg-gray">
-        <div class="container pt-10 pb-12 pt-md-14 pb-md-16 text-center">
-            <div class="row">
-                <div class="col-md-7 col-lg-6 col-xl-5 mx-auto">
-                    <h1 class="display-1 mb-3">Business News</h1>
-                    <p class="lead px-lg-5 px-xxl-8">Welcome to our journal. Here you can find the latest company
-                        news and business articles.</p>
+    <section class="section-frame overflow-hidden">
+        <div class="wrapper bg-soft-primary">
+            <div class="container py-12 py-md-16 text-center">
+                <div class="row">
+                    <div class="col-md-7 col-lg-6 col-xl-5 mx-auto">
+                        <h1 class="display-1 mb-3">Business News</h1>
+                        <p class="lead px-lg-5 px-xxl-8 mb-1">Welcome to our journal. Here you can find the latest company
+                            news and business articles.</p>
+                    </div>
+                    <!-- /column -->
                 </div>
-                <!-- /column -->
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
+            <!-- /.container -->
         </div>
-        <!-- /.container -->
+        <!-- /.wrapper -->
     </section>
     <!-- /section -->
     <section class="wrapper bg-light">
@@ -84,7 +87,7 @@
                     <!-- /.widget -->
                 </aside>
                 <!-- /column -->
-                <div class="col-lg-6  ">
+                <div class="col-lg-6">
                     <div class="blog classic-view">
                         <article class="post">
                             <div class="card">
