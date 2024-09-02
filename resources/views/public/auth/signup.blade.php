@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="form-floating mb-4">
                                     <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                        placeholder="Nom" id="username" username="username" value="{{ old('username') }}">
+                                        placeholder="Pseudo" id="username" name="username" value="{{ old('username') }}">
                                     <label for="username">Pseudo</label>
                                     @error('username')
                                         <div class="invalid-feedback">

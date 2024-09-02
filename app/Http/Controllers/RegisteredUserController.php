@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisteredUserRequest;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\View\View;
@@ -32,7 +33,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(StorePublicProfileRequest $request): RedirectResponse
+    public function store(RegisteredUserRequest $request): RedirectResponse
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
