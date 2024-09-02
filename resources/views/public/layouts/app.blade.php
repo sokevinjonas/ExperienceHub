@@ -26,6 +26,7 @@
     </div>
     <script src="{{ asset('assets/customer/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/customer/js/theme.js') }}"></script>
+    <script src="{{ asset('assets/global/js/main.js') }}"></script>
     @yield('script')
 </body>
 
