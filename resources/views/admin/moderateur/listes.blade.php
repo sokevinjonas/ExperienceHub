@@ -5,7 +5,7 @@
     <h1>Listes des Moderateurs</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.admin')}}">Dashboard</a></li>
             <li class="breadcrumb-item">Moderateur</li>
             <li class="breadcrumb-item active">Listes Moderateurs</li>
         </ol>
@@ -21,30 +21,48 @@
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th data-type="date" data-format="YYYY/DD/MM">Ajoue le</th>
+                                <th data-type="date" data-format="YYYY/DD/MM">Ajouté le</th>
                                 <th>Pseudo</th>
-                                <th>
-                                    Nom & Prenom(s)
-                                </th>
-                                <th>telephone</th>
+                                <th>Nom & Prénom(s)</th>
+                                <th>Téléphone</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($moderators as $data)
                             <tr>
-                                <td>Unity Pugh</td>
-                                <td>9958</td>
-                                <td>Curicó</td>
-                                <td>2005/02/11</td>
-                                <td>37%</td>
-                            </tr>
+                                <td>{{ \Carbon\Carbon::parse($data->created_at)->format('Y/d/m') }}</td>
 
+                                <td>{{ $data->username ?? 'N/A' }}</td>
+
+                                <td>{{ $data->name }}</td>
+
+                                <td>{{ $data->phone ?? 'N/A' }}</td>
+
+                                <td>
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#editModal{{ $data->id }}">Modifier</a>
+                                    <!-- Modal -->
+                                    @include('admin.moderateur.modal')
+                                    <form action="{{ route('admin.moderators.destroy', $data->id) }}" method="POST"
+                                        style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="5">Aucun enregistrement trouvé</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
-                    <!-- End Table with stripped rows -->
-
+                    <!-- Fin de la table avec des lignes zébrées -->
                 </div>
             </div>
+
 
         </div>
         <div class="col-lg-4">
@@ -131,4 +149,6 @@
 
         </div>
     </div>
+
+
     @endsection

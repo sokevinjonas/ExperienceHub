@@ -7,6 +7,7 @@ use App\Models\UserRole;
 use App\Models\UserPermission;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\RegisteredUserRequest;
 use App\Http\Requests\StoreUserPermissionRequest;
 use App\Http\Requests\UpdateUserPermissionRequest;
@@ -14,7 +15,9 @@ use App\Http\Requests\UpdateUserPermissionRequest;
 class UserPermissionController extends Controller
 {
     public function listModerateur(){
-        return view('admin.moderateur.listes');
+        $moderatorRoleId = UserRole::getModeratorRole()->id;
+        $moderators = User::where('role_id', $moderatorRoleId)->get();
+        return view('admin.moderateur.listes', compact('moderators'));
     }
     public function storeModerateur(RegisteredUserRequest $request):RedirectResponse
     {
@@ -25,10 +28,25 @@ class UserPermissionController extends Controller
 
         return redirect()->back();
     }
-    public function allModera()
+    public function updateModerateur(UpdateUserRequest $request, $id):RedirectResponse
     {
-        $moderatorRoleId = UserRole::getModeratorRole()->id;
-        $moderators = User::where('role_id', $moderatorRoleId)->get();
-        return view('admin.moderateur.listes', compact('moderators'));
+        $moderator = User::findOrFail($id);
+        dd($moderator->id);
+        if ($moderator) {
+            $data = $request->validated();
+             // Assigner le rôle de modérateur
+            $data['role_id'] = UserRole::getModeratorRole()->id;
+            $moderator->update($data);
+        }
+
+        return redirect()->back()->with('success', 'Modérateur mis à jour avec succès.');
     }
+    public function destroy($id)
+    {
+        $moderator = User::findOrFail($id);
+        $moderator->delete();
+        return redirect()->back()->with('success', 'Modérateur supprimé avec succès.');
+    }
+
+
 }
