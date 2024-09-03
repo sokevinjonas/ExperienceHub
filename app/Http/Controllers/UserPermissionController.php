@@ -2,65 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\UserRole;
+use App\Models\UserPermission;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\RegisteredUserRequest;
 use App\Http\Requests\StoreUserPermissionRequest;
 use App\Http\Requests\UpdateUserPermissionRequest;
-use App\Models\UserPermission;
 
 class UserPermissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function listModerateur(){
+        return view('admin.moderateur.listes');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function storeModerateur(RegisteredUserRequest $request):RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $data['password'] = Hash::make($data['password']);
+        $data['role_id'] = UserRole::getModeratorRole()->id;
+        $user = User::create($data);
+
+        return redirect()->back();
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreUserPermissionRequest $request)
+    public function allModera()
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(UserPermission $userPermission)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(UserPermission $userPermission)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateUserPermissionRequest $request, UserPermission $userPermission)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(UserPermission $userPermission)
-    {
-        //
+        $moderatorRoleId = UserRole::getModeratorRole()->id;
+        $moderators = User::where('role_id', $moderatorRoleId)->get();
+        return view('admin.moderateur.listes', compact('moderators'));
     }
 }

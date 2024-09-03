@@ -35,6 +35,14 @@ class PublicAuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $user = auth()->user();
+
+        if ($user) {
+        $role = $user->role->name;
+        if (in_array($role, ['administrateur', 'modérateur'])) {
+            return redirect()->intended(route('admin.admin'));
+        }
+    }
 
         return redirect()->intended(route('public.pages.home', absolute: false));
     }
