@@ -2,17 +2,83 @@
 @section('titile_admin', "Listes des Moderateur")
 @section('admin-content')
 <div class="pagetitle">
-    <h1>Listes des Moderateurs</h1>
+    <h1>Listes des Utilisateurs</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('admin.admin')}}">Dashboard</a></li>
-            <li class="breadcrumb-item">Moderateur</li>
-            <li class="breadcrumb-item active">Listes Moderateurs</li>
+            <li class="breadcrumb-item">@extends('admin.layout.app')
+@section('titile_admin', "Listes des Moderateur")
+@section('admin-content')
+<div class="pagetitle">
+    <h1>Listes des Utilisateurs</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('admin.admin')}}">Dashboard</a></li>
+            <li class="breadcrumb-item">Utilisateur</li>
+            <li class="breadcrumb-item active">Listes Utilisateurs</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
 
 <section class="section">
+    <div class="row">
+        <div class="col-lg-8">
+
+            <div class="card">
+                <div class="card-body">
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th data-type="date" data-format="YYYY/DD/MM">Ajouté le</th>
+                                <th>Pseudo</th>
+                                <th>Nom & Prénom(s)</th>
+                                <th>Téléphone</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($utilisateurs as $data)
+                            <tr>
+                                <td>{{ \Carbon\Carbon::parse($data->created_at)->format('Y/d/m') }}</td>
+
+                                <td>{{ $data->username ?? 'N/A' }}</td>
+
+                                <td>{{ $data->name }}</td>
+
+                                <td>{{ $data->phone ?? 'N/A' }}</td>
+
+                                <td>
+                                    <form action="{{ route('admin.utilisateur.destroy', $data->id) }}" method="POST"
+                                        style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="5">Aucun enregistrement trouvé</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                    <!-- Fin de la table avec des lignes zébrées -->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    @endsection
+</li>
+            <li class="breadcrumb-item active">Listes Moderateurs</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
     <div class="row">
         <div class="col-lg-8">
 

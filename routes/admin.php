@@ -13,6 +13,7 @@ Route::name('admin.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/admin-welcome', [UserRoleController::class, 'index'])->name('admin');
         Route::get('/add-moderateur', [UserPermissionController::class, 'listModerateur'])->name('moderateur');
+        Route::get('/utilisateur', [UserPermissionController::class, 'listUtilisateurs'])->name('utilisateur');
         Route::post('/store-moderateur', [UserPermissionController::class, 'storeModerateur'])->name('store.moderateur');
         Route::put('/admin/moderators/{id}/update', [UserPermissionController::class, 'updateModerateur'])->name('moderators.update');
         Route::delete('/admin/moderators/{id}/destroy', [UserPermissionController::class, 'destroy'])->name('moderators.destroy');

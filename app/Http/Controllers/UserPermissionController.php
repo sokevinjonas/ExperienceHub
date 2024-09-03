@@ -19,6 +19,12 @@ class UserPermissionController extends Controller
         $moderators = User::where('role_id', $moderatorRoleId)->get();
         return view('admin.moderateur.listes', compact('moderators'));
     }
+
+    public function listUtilisateurs(){
+        $moderatorRoleId = UserRole::getUserRole()->id;
+        $utilisateurs = User::where('role_id', $moderatorRoleId)->get();
+        return view('admin.utilisaleur.listes', compact('utilisateurs'));
+    }
     public function storeModerateur(RegisteredUserRequest $request):RedirectResponse
     {
         $data = $request->validated();

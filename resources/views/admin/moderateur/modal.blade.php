@@ -15,7 +15,7 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="name{{ $data->id }}">Pseudo</label>
-                        <input type="text" name="name" id="name{{ $data->id }}"
+                        <input type="text" name="username" id="username{{ $data->id }}"
                             value="{{ old('username', $data->username) }}"
                             class="form-control" required>
                     </div>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name{{ $data->id }}">Telephone</label>
-                        <input type="text" name="phone" id="name{{ $data->id }}"
+                        <input type="text" name="phone" id="phone{{ $data->id }}"
                             value="{{ old('phone', $data->phone) }}"
                             class="form-control" required>
                     </div>
